@@ -1,26 +1,26 @@
-# amaz# PINN-Conv 2D PDE Solver
+# PINN-2D-PDE-Solver
 
-> A Physics-Informed Neural Network (PINN) solver with convolutional layers for solving 2D partial differential equations.
+> A high-precision Physics-Informed Neural Network (PINN) solver based on deep fully-connected layers for solving 2D partial differential equations.
 
 ## 📖 项目简介
-本项目实现了一个基于**卷积神经网络 (CNN)** 的物理信息神经网络 (PINN) 求解器，专门用于解决**二维偏微分方程 (2D PDEs)**。
+本项目实现了一个基于**深度全连接神经网络 (Deep MLP)** 的物理信息神经网络 (PINN) 求解器，专门用于解决**二维偏微分方程 (2D PDEs)**。
 
-与传统的全连接 PINN (MLP-PINN) 不同，本项目利用卷积层提取空间局部特征，旨在提高二维空间场问题（如热传导、流体场）的求解精度与收敛速度。
+项目采用标准的 PINN 架构，通过自动微分技术将物理方程嵌入损失函数，无需大量标注数据即可实现高精度的数值求解。代码结构清晰，适合作为二维场问题（如热传导、静电场、流体力学）的研究基准。
 
 ## 🔬 核心方法
 ### 1. 网络架构
-- **输入层**: 二维坐标网格 $(x, y)$
-- **特征提取**: 使用多层卷积层 (Conv2d) 捕捉空间依赖性
+- **输入层**: 二维空间坐标 $(x, y)$
+- **隐藏层**: 6层全连接网络 (Fully-Connected Layers)，每层包含 50 个神经元
+- **激活函数**: Tanh (保证高阶可微性，便于计算二阶导数)
 - **输出层**: 物理量预测值 $u(x, y)$
-- **激活函数**: Tanh / Sigmoid (保证高阶可微性以计算残差)
 
 ### 2. 损失函数设计
 总损失由物理残差与边界条件组成：
-$$ L_{total} = L_{PDE} + \lambda_{BC} L_{BC} + \lambda_{IC} L_{IC} $$
-- $L_{PDE}$: 方程残差损失 (Residual Loss)
-- $L_{BC}$: 边界条件损失 (Boundary Condition Loss)
+$$ L_{total} = L_{PDE} + \lambda_{BC} L_{BC} $$
+- $L_{PDE}$: 偏微分方程残差损失
+- $L_{BC}$: 狄利克雷/诺伊曼边界条件损失
 
 ## 🚀 快速开始
 ### 环境依赖
 ```bash
-pip install torch numpy matplotlib scipyine7
+pip install torch numpy matplotlib
