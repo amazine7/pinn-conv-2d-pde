@@ -25,18 +25,18 @@ $$ L_{total} = L_{PDE} + \lambda_{BC} L_{BC} $$
 ```bash
 pip install torch numpy matplotlib
 
-## 🖼️ 核心框架与验证策略 (Framework & Validation Strategy)
+🖼️ 核心框架与验证策略 (Framework & Validation Strategy)
 
 本项目的核心在于构建高精度的物理约束网络与严谨的验证体系。
 
-### 1. PINN 基础架构实现
+1. PINN 基础架构实现
 基于 PyTorch 自动微分机制 (`torch.autograd.grad`)，构建了包含输入层、隐藏层及输出层的深度全连接神经网络。通过自定义 `PINN` 类封装前向传播与物理损失计算逻辑。
 
 <p align="center">
   < img src="https://raw.githubusercontent.com/amazine7/pinn-conv-2d-pde/main/image/code/code.png" width="600" alt="PINN代码框架"/>
 </p >
 
-### 2. 全域验证点采样框架
+2. 全域验证点采样框架
 为确保模型在计算域内的泛化能力，设计了多尺度验证点生成策略：
 - **内部域**：基于网格筛选椭圆外有效区域；
 - **边界域**：沿椭圆边界参数化采样；
